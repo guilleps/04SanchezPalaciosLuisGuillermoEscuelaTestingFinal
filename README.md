@@ -1,4 +1,5 @@
 # Prueba final - Escuela Testing
+Luis Guillermo Sánchez Palacios
 
 [Swagger Petstore](https://petstore.swagger.io)
 
@@ -167,3 +168,4 @@ mvn clean test -Dtest=UserRunner -Dkarate.options="--tags @TEST-01" -Dkarate.env
             ├── karate-config.js
             └── logback-test.xml
 ```
+Luis Guillermo Sánchez Palacios
