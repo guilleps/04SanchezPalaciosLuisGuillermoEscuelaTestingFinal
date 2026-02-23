@@ -22,8 +22,6 @@ Las órdenes se parametrizan usando múltiples JSON:
 
 ## Unhappy Path
 
-Se evaluaron escenarios negativos relevantes:
-
 ### Búsqueda de orden eliminada
 - Se valida que el sistema retorne 404.
 - Se verifica mensaje `"Order not found"`.
@@ -64,7 +62,91 @@ mvn clean test -Dtest=StoreRunner -Dkarate.options="--tags @TEST-01" -Dkarate.en
 
 ---
 
-## Estructura del Proyecto
+
+Perfecto 👌 ahora vamos a dejar tu README al mismo nivel profesional que el módulo **Store**, pero bien estructurado y claro para el módulo **User**.
+
+Te lo redacto listo para copiar y pegar.
+
+---
+
+
+# Módulo User
+
+## Happy Path
+
+Se validan los siguientes flujos funcionales:
+
+1. Crear usuario (`POST /user`)
+2. Buscar usuario por username (`GET /user/{username}`)
+3. Actualizar usuario (`PUT /user/{username}`)
+4. Eliminar usuario (`DELETE /user/{username}`)
+
+Los usuarios se parametrizan utilizando múltiples archivos JSON:
+
+* `user-1.json`
+* `user-2.json`
+
+---
+
+## Unhappy Path
+
+---
+
+### Buscar usuario inexistente
+
+* Se valida que el sistema retorne `404`
+* Se verifica mensaje `"User not found"`
+
+Esto confirma el manejo adecuado cuando el recurso no existe.
+
+---
+
+### Crear usuario sin body
+
+El endpoint acepta `{}` y responde `200 OK`.
+
+* no existe validación estricta del payload requerido para la creación de usuario.
+
+---
+
+### Login con credenciales inválidas
+
+Se probaron combinaciones incorrectas de:
+
+* username inválido
+* password incorrecto
+
+El endpoint responde `200 OK` en lugar de un posible `401 Unauthorized`.
+
+Sin validación adecuada de credenciales inválidas según buenas prácticas REST.
+
+---
+
+### Eliminar usuario inexistente
+
+* Se valida que el sistema retorne `404`
+* Confirma correcto manejo de recurso inexistente.
+
+------
+
+## Ejecución
+
+### Ejecutar todos los tests User
+
+```bash
+mvn clean test -Dtest=UserRunner -Dkarate.options="--tags @regression" -Dkarate.env=dev
+```
+
+### Ejecutar un test específico
+
+```bash
+mvn clean test -Dtest=UserRunner -Dkarate.options="--tags @TEST-01" -Dkarate.env=dev
+```
+
+---
+
+
+# Estructura del Proyecto
 ```
 └── 📁src
     └── 📁test
